@@ -12,6 +12,9 @@ optional: yarn for package management (server only).
 https://yarnpkg.com/
 
 Add ./node_modules/.bin to your path. This enables to you to run locally installed npm commands.
+```
+PATH="./node_modules/.bin:$PATH"
+```
 
 nodemon for watching server and restarting on modifications.
 ```
