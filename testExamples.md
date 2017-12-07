@@ -7,21 +7,21 @@ Here we will give test examples what should happen in curtain states of the game
 
 ## Create/join a game commands
 
-### Creating a game
+#### Creating a game
  State | Result
 :----- | ---
  Given | Empty
  When  | Game is started and no other player has connected
  Then  | emits GameCreated event
 
-### Joining a game
+#### Joining a game
  State | Result
 :----- | ---
  Given | Game was created by player A
  When  | Player Bob joins the game
  Then  | emits GameJoined event
 
-### Joining a full game
+#### Joining a full game
  State | Result
 :----- | ---
  Given | Game has 2 players already
@@ -30,28 +30,28 @@ Here we will give test examples what should happen in curtain states of the game
 
 ## Place moves commands
 
-### First game move
+#### First game move
  State | Result
 :----- | ---
  Given | 
  When  | 
  Then  | emits MovePlaced event
 
-### Illegal move - Out of bound
+#### Illegal move - Out of bound
  State | Result
 :----- | ---
  Given | 
  When  | 
  Then  | 
 
-### Illegal move - Square occupied
+#### Illegal move - Square occupied
  State | Result
 :----- | ---
  Given | 
  When  | 
  Then  | emits IllegalMove event
 
-### Not your turn
+#### Not your turn
  State | Result
 :----- | ---
  Given | 
@@ -60,35 +60,35 @@ Here we will give test examples what should happen in curtain states of the game
 
 ## Game over commands
 
-### Game won horizontal
+#### Game won horizontal
  State | Result
 :----- | ---
  Given | 
  When  | 
  Then  | emits GameWon event
 
-### Game won vertical
+#### Game won vertical
  State | Result
 :----- | ---
  Given | 
  When  | 
  Then  | emits GameWon event
 
-### Game won diagonally
+#### Game won diagonally
  State | Result
 :----- | ---
  Given | 
  When  | 
  Then  | emits GameWon event
 
-### Game draw
+#### Game draw
  State | Result
 :----- | ---
  Given | 
  When  | (last square and not game won)
  Then  | emits GameDraw event
 
-### name
+#### name
  State | Result
 :----- | ---
  Given | 
