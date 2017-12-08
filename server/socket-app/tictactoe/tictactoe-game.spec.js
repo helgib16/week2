@@ -48,25 +48,25 @@ describe('create game command', function() {
 
         given = [];
         when =
-            {
-                id:"123987",
-                type: "CreateGame",
-                user: {
-                    userName: "TheGuy"
-                },
-                name: "TheFirstGame",
-                timeStamp: "2014-12-02T11:29:29"
-            };
+        {
+            id:"123987",
+            type: "CreateGame",
+            user: {
+                userName: "TheGuy"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29"
+        };
         then = [
-            {
-                type: "GameCreated",
-                user: {
-                    userName: "TheGuy"
-                },
-                name: "TheFirstGame",
-                timeStamp: "2014-12-02T11:29:29",
-                side:'X'
-            }
+        {
+            type: "GameCreated",
+            user: {
+                userName: "TheGuy"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side:'X'
+        }
         ];
 
     })
@@ -103,30 +103,69 @@ fdescribe('join game command', function () {
         }
         ];
         when =
-            {
-                type: "JoinGame",
-                user: {
-                    userName: "Gummi"
-                },
-                name: "TheFirstGame",
-                timeStamp: "2014-12-02T11:29:29"
-            };
+        {
+            type: "JoinGame",
+            user: {
+                userName: "Gummi"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29"
+        };
         then = [
-            {
-                type: "GameJoined",
-                user: {
-                    userName: "Gummi"
-                },
-                name: "TheFirstGame",
-                timeStamp: "2014-12-02T11:29:29",
-                side:'O'
-            }
+        {
+            type: "GameJoined",
+            user: {
+                userName: "Gummi"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side:'O'
+        }
         ];
 
     });
 
-    it('should emit FullGameJoinAttempted event when game full..implement this', function () {
-        expect(true).toBe(false);
+    it('should emit FullGameJoinAttempted event when game full...', function () {
+
+        given = [{
+            type: "GameCreated",
+            user: {
+                userName: "Bob"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:30:29"
+        }, 
+        {
+            type: "GameJoined",
+            user: {
+                userName: "Gummi"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side:'O'
+        }
+        ];
+        when =
+        {
+            type: "JoinGame",
+            user: {
+                userName: "Alice"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:33:29"
+        };
+        then = [
+        {
+            type: "FullGameJoinAttempted",
+            user: {
+                userName: "Alice"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:33:29"
+        }
+        ];
+
+        //expect(true).toBe(false);
     });
 });
 
