@@ -190,29 +190,66 @@ describe('Place move command', function() {
 
         given = [createEvent, joinEvent];
         when = {
-                type: "PlaceMove",
-                user: {
-                    userName: "Bob"
-                },
-                name: "TheFirstGame",
-                timeStamp: "2014-12-02T11:29:29",
-                side: 'X',
-                x: 1,
-                y: 1
-            };
+            type: "PlaceMove",
+            user: {
+                userName: "Bob"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: 'X',
+            x: 1,
+            y: 1
+        };
 
-            then = [{
-                type: "MovePlaced",
-                user: {
-                    userName: "Bob"
-                },
-                name: "TheFirstGame",
-                timeStamp: "2014-12-02T11:29:29",
-                side: 'X',
-                x: 1,
-                y: 1
-            }];
+        then = [{
+            type: "MovePlaced",
+            user: {
+                userName: "Bob"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: 'X',
+            x: 1,
+            y: 1
+        }];
+    })
 
+    it('should emit IllegalMove when square is already occupied...', function(){
 
+        given = [createEvent, joinEvent,
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "Bob"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: 'X',
+            x: 1,
+            y: 1
+        }];
+        when = {
+            type: "PlaceMove",
+            user: {
+                userName: "Alice"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: 'O',            
+            x: 1,
+            y: 1
+        };
+
+        then = [{
+            type: "IllegalMove",
+            user: {
+                userName: "Alice"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: 'O',
+            x: 1,
+            y: 1
+        }];
     })
 });

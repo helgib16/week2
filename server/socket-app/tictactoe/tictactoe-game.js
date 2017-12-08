@@ -58,20 +58,33 @@ module.exports = function(injected){
                         }]);
                     },
                     "PlaceMove": function(cmd){
-                        //console.debug("cmd: ", cmd);
                         
-                        applyEvents([{
-                            gameId: cmd.gameId,
-                            type: "MovePlaced",
-                            user: cmd.user,
-                            name: cmd.name,
-                            timeStamp: cmd.timeStamp,
-                            side: cmd.side,
-                            x: cmd.x,
-                            y: cmd.y
-                        }]);
 
-
+                        if(gameState.squareOccupied(cmd.x, cmd.y)){
+                            applyEvents([{
+                                gameId: cmd.gameId,
+                                type: "IllegalMove",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                                side: cmd.side,
+                                x: cmd.x,
+                                y: cmd.y
+                            }]);
+                            return;
+                        }
+                        else{
+                            applyEvents([{
+                                gameId: cmd.gameId,
+                                type: "MovePlaced",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                                side: cmd.side,
+                                x: cmd.x,
+                                y: cmd.y
+                            }]);
+                        }
 
                     },
                     "RequestGameHistory": function(cmd){

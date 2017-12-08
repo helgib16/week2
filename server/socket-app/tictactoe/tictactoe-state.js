@@ -7,11 +7,17 @@ module.exports = function (injected) {
         var gamefull = false;
         var gameWon = false;
         var gameDraw = false;
+        var gameBoard = [['', '', ''],
+                         ['', '', ''],
+                         ['', '', '']];
 
 
         function processEvent(event) {
-            if(event.type==="GameJoined"){
+            if(event.type === "GameJoined"){
                 gamefull = true;
+            }
+            if(event.type === "MovePlaced"){
+                gameBoard[event.x][event.y] = event.side;
             }
             //console.debug("event: ", event);
         }
@@ -25,10 +31,16 @@ module.exports = function (injected) {
             return gamefull;
         }
 
+        function squareOccupied(x, y){
+            //console.debug("gameboard: ", gameBoard)
+            return gameBoard[x][y] != '';
+        }
+
         processEvents(history);
 
         return {
-            gameFull:gameFull,
+            gameFull: gameFull,
+            squareOccupied: squareOccupied,
             processEvents: processEvents,
         }
     };
