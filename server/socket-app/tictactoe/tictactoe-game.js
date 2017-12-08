@@ -58,9 +58,18 @@ module.exports = function(injected){
                         }]);
                     },
                     "PlaceMove": function(cmd){
-
-
-                        // Check here for conditions which prevent command from altering state
+                        //console.debug("cmd: ", cmd);
+                        
+                        applyEvents([{
+                            gameId: cmd.gameId,
+                            type: "MovePlaced",
+                            user: cmd.user,
+                            name: cmd.name,
+                            timeStamp: cmd.timeStamp,
+                            side: cmd.side,
+                            x: cmd.x,
+                            y: cmd.y
+                        }]);
 
 
 

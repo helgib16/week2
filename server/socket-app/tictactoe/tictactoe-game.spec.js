@@ -73,7 +73,7 @@ describe('create game command', function() {
 });
 
 
-fdescribe('join game command', function () {
+describe('join game command', function () {
 
 
     let given, when, then;
@@ -143,8 +143,7 @@ fdescribe('join game command', function () {
             name: "TheFirstGame",
             timeStamp: "2014-12-02T11:29:29",
             side:'O'
-        }
-        ];
+        }];
         when =
         {
             type: "JoinGame",
@@ -169,3 +168,51 @@ fdescribe('join game command', function () {
     });
 });
 
+describe('Place move command', function() {
+
+
+    let given, when, then;
+
+    beforeEach(function(){
+        given=undefined;
+        when=undefined;
+        then=undefined;
+    });
+
+    afterEach(function () {
+        tictactoe(given).executeCommand(when, function(actualEvents){
+            should(JSON.stringify(actualEvents)).be.exactly(JSON.stringify(then));
+        });
+    });
+
+
+    it('should emit MovePlaced on first move...', function(){
+
+        given = [createEvent, joinEvent];
+        when = {
+                type: "PlaceMove",
+                user: {
+                    userName: "Bob"
+                },
+                name: "TheFirstGame",
+                timeStamp: "2014-12-02T11:29:29",
+                side: 'X',
+                x: 1,
+                y: 1
+            };
+
+            then = [{
+                type: "MovePlaced",
+                user: {
+                    userName: "Bob"
+                },
+                name: "TheFirstGame",
+                timeStamp: "2014-12-02T11:29:29",
+                side: 'X',
+                x: 1,
+                y: 1
+            }];
+
+
+    })
+});
