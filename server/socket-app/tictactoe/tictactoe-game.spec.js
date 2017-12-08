@@ -252,4 +252,43 @@ describe('Place move command', function() {
             y: 1
         }];
     })
+
+    it('Should emit NotYourMove if attempting to make move out of turn...', function(){
+
+        given = [createEvent, joinEvent,
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "Alice"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: 'X',
+            x: 1,
+            y: 1
+        }];
+        when = {
+            type: "PlaceMove",
+            user: {
+                userName: "Alice"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: 'X',            
+            x: 3,
+            y: 1
+        };
+
+        then = [{
+            type: "NotYourMove",
+            user: {
+                userName: "Alice"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: 'X',
+            x: 3,
+            y: 1
+        }];
+    })
 });

@@ -58,7 +58,21 @@ module.exports = function(injected){
                         }]);
                     },
                     "PlaceMove": function(cmd){
-                        
+
+                        //console.debug("cmd: ", cmd);
+                        if(gameState.player1Turn() && cmd.side === 'O' || !gameState.player1Turn() && cmd.side === 'X'){
+                            applyEvents([{
+                                gameId: cmd.gameId,
+                                type: "NotYourMove",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                                side: cmd.side,
+                                x: cmd.x,
+                                y: cmd.y
+                            }]);
+                            return;
+                        };
 
                         if(gameState.squareOccupied(cmd.x, cmd.y)){
                             applyEvents([{

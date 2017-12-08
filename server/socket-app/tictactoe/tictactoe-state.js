@@ -7,6 +7,7 @@ module.exports = function (injected) {
         var gamefull = false;
         var gameWon = false;
         var gameDraw = false;
+        var player1Move = true;
         var gameBoard = [['', '', ''],
                          ['', '', ''],
                          ['', '', '']];
@@ -18,6 +19,7 @@ module.exports = function (injected) {
             }
             if(event.type === "MovePlaced"){
                 gameBoard[event.x][event.y] = event.side;
+                player1Move = !player1Move;
             }
             //console.debug("event: ", event);
         }
@@ -25,6 +27,10 @@ module.exports = function (injected) {
         function processEvents(history) {
             //console.debug("history: ", history);
             _.each(history, processEvent);
+        }
+
+        function player1Turn(){
+            return player1Move;
         }
 
         function gameFull(){
@@ -41,6 +47,7 @@ module.exports = function (injected) {
         return {
             gameFull: gameFull,
             squareOccupied: squareOccupied,
+            player1Turn: player1Turn,
             processEvents: processEvents,
         }
     };
