@@ -68,4 +68,3 @@ scp -o StrictHostKeyChecking=no -i "./$INSTANCE_DIR/${SECURITY_GROUP_NAME}.pem" 
 
 
 echo  Server is available on ${INSTANCE_PUBLIC_NAME}
-
