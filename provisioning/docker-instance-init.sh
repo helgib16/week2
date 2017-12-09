@@ -31,4 +31,15 @@ sudo usermod -a -G docker jenkins
 sudo service jenkins start
 sudo chkconfig jenkins on
 
+
+# Installing Node version manager
+#curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Install node 6.9.1
+#nvm install 6.9.1
+#nvm install npm
+
 touch ec2-init-done.markerfile

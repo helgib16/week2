@@ -4,6 +4,8 @@ node {
         echo 'Building..'
         echo ''
         echo 'Running postgres and migrate'
+        echo 'My location is...'
+        pwd
         sh 'npm run startpostgres && sleep 10 && npm run migratedb'
         echo ''
         echo 'Installing dependencies'
