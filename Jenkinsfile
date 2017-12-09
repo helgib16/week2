@@ -2,7 +2,6 @@ node {
     checkout scm
     stage('Build') {
         echo 'Building..'
-        # /var/lib/jenkins/workspace/TicTacToe
         echo 'Installing packages'
         sh 'npm install'
         echo 'Running postgres and migrate'
