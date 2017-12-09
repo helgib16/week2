@@ -1,7 +1,7 @@
 node {
     checkout scm
+    export PATH=/usr/local/bin
     stage('Build') {
-        export PATH=/usr/local/bin
         echo 'Building..'
         echo 'Installing packages'
         sh 'npm install'
