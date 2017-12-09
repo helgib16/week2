@@ -2,18 +2,13 @@ node {
     checkout scm
     stage('Build') {
         echo 'Building..'
-        echo ''
+        # /var/lib/jenkins/workspace/TicTacToe
+        echo 'Installing packages'
+        sh 'npm install'
         echo 'Running postgres and migrate'
-        echo 'My location is...'
-        sh 'pwd'
-        sh 'ls'
         sh 'npm run startpostgres && sleep 10 && npm run migratedb'
-        echo ''
-        echo 'Installing dependencies'
-        sh 'yarn install'
         echo 'Install client dependencies'
-        sh 'cd client && yarn install && cd ..'
-        echo ''
+        sh 'cd client && npm install && cd ..'
         echo 'Start server'
         sh 'npm run startserver'
     }
