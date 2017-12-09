@@ -1,13 +1,15 @@
 node {
     checkout scm
     stage('Build') {
+        export PATH=/usr/local/bin
         echo 'Building..'
         echo 'Installing packages'
-        sh 'yarn install'
+        sh 'npm install'
+
         echo 'Running postgres and migrate'
         sh 'npm run startpostgres && sleep 10 && npm run migratedb'
         echo 'Install client dependencies'
-        sh 'cd client && yarn install && cd ..'
+        sh 'cd client && npm install && cd ..'
         echo 'Start server'
         sh 'npm run startserver'
     }
