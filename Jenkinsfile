@@ -1,6 +1,4 @@
 node {
-    def nodeHome = "${tool 'recent node'}"
-    env.PATH = "${nodeHome}/bin:${env.PATH}"
     checkout scm
     stage('Build') {
         echo 'Building..'
