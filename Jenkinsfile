@@ -1,4 +1,5 @@
 node {
+    tool 'node-6.9.1'
     checkout scm
     stage('Build') {
         echo 'Building..'
