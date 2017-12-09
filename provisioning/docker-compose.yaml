@@ -4,10 +4,10 @@ services:
     environment:
       - 'POSTGRES_HOST=postgres'
       - 'POSTGRES_PORT=5432'
-      - 'PORT=8080'
+      - 'PORT=8081'
     image: 'm3ttle/tictactoe:${GIT_COMMIT}'
     ports:
-      - '8080:8080'
+      - '8081:8081'
     links:
       - 'postgres'
   postgres:
