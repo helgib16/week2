@@ -292,14 +292,14 @@ describe('Place move command', function() {
         }];
     })
 
-/*
-        it('Should emit game won on horizontal win...', function(){
+
+    it('Should emit MovePlaced and GameWon on horizontal win...', function(){
 
         given = [createEvent, joinEvent,
         {
             type: "MovePlaced",
             user: {
-                userName: "Alice"
+                userName: "TheGuy"
             },
             name: "TheFirstGame",
             timeStamp: "2014-12-02T11:29:29",
@@ -310,37 +310,226 @@ describe('Place move command', function() {
         {
             type: "MovePlaced",
             user: {
-                userName: "Alice"
+                userName: "Gummi"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: 'O',
+            x: 0,
+            y: 0
+        },
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "TheGuy"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: 'X',
+            x: 0,
+            y: 1
+        },
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "Gummi"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: '0',
+            x: 1,
+            y: 0
+        }];
+        when = {
+            type: "PlaceMove",
+            user: {
+                userName: "TheGuy"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: 'X',            
+            x: 2,
+            y: 1
+        };
+
+        then = [{
+            type: "MovePlaced",
+            user: {
+                userName: "TheGuy"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: 'X',
+            x: 2,
+            y: 1
+        },
+        {
+            type: "GameWon",
+            user: {
+                userName: "TheGuy"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29"
+        }];
+    })
+
+    it('Should emit MovePlaced and GameWon on vertical win...', function(){
+
+        given = [createEvent, joinEvent,
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "TheGuy"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: 'X',
+            x: 1,
+            y: 0
+        },
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "Gummi"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: 'O',
+            x: 0,
+            y: 0
+        },
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "TheGuy"
             },
             name: "TheFirstGame",
             timeStamp: "2014-12-02T11:29:29",
             side: 'X',
             x: 1,
             y: 1
+        },
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "Gummi"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: '0',
+            x: 0,
+            y: 1
         }];
         when = {
             type: "PlaceMove",
             user: {
-                userName: "Alice"
+                userName: "TheGuy"
             },
             name: "TheFirstGame",
             timeStamp: "2014-12-02T11:29:29",
             side: 'X',            
-            x: 3,
-            y: 1
+            x: 1,
+            y: 2
         };
 
         then = [{
-            type: "NotYourMove",
+            type: "MovePlaced",
             user: {
-                userName: "Alice"
+                userName: "TheGuy"
             },
             name: "TheFirstGame",
             timeStamp: "2014-12-02T11:29:29",
             side: 'X',
-            x: 3,
-            y: 1
+            x: 1,
+            y: 2
+        },
+        {
+            type: "GameWon",
+            user: {
+                userName: "TheGuy"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29"
         }];
-    })*/
+    })
+    it('Should emit MovePlaced and GameWon on diagonal win...', function(){
+
+        given = [createEvent, joinEvent,
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "TheGuy"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: 'X',
+            x: 1,
+            y: 1
+        },
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "Gummi"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: 'O',
+            x: 1,
+            y: 0
+        },
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "TheGuy"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: 'X',
+            x: 0,
+            y: 0
+        },
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "Gummi"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: '0',
+            x: 2,
+            y: 0
+        }];
+        when = {
+            type: "PlaceMove",
+            user: {
+                userName: "TheGuy"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: 'X',            
+            x: 2,
+            y: 2
+        };
+
+        then = [{
+            type: "MovePlaced",
+            user: {
+                userName: "TheGuy"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side: 'X',
+            x: 2,
+            y: 2
+        },
+        {
+            type: "GameWon",
+            user: {
+                userName: "TheGuy"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29"
+        }];
+    })
 
 });

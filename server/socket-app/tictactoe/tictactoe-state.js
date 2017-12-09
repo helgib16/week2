@@ -42,9 +42,14 @@ module.exports = function (injected) {
             return gameBoard[x][y] != '';
         }
 
+        function retrieveSymbolOnSquare (x, y){
+            return gameBoard[x][y]
+        }
+
         processEvents(history);
 
         return {
+            retrieveSymbolOnSquare: retrieveSymbolOnSquare,
             gameFull: gameFull,
             squareOccupied: squareOccupied,
             player1Turn: player1Turn,

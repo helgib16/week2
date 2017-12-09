@@ -11,7 +11,37 @@ module.exports = function(injected){
                 function applyEvents(events, moreEvents){
                     gameState.processEvents(events);
 
-                    // Check here for game state that may result in additional events
+                    //Checking for win conditions
+                    for (var i = 0; i < 3; i++){
+                        if (gameState.retrieveSymbolOnSquare(i,0) != '' && gameState.retrieveSymbolOnSquare (i,0) == gameState.retrieveSymbolOnSquare(i,1) && gameState.retrieveSymbolOnSquare(i,1) == gameState.retrieveSymbolOnSquare(i,2)){
+                            applyEvents( [{
+                                gameId: cmd.gameId,
+                                type: "GameWon",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp:cmd.timeStamp
+                            }]);
+                        }
+                        if (gameState.retrieveSymbolOnSquare(0,i) != '' && gameState.retrieveSymbolOnSquare (0,i) == gameState.retrieveSymbolOnSquare(1,i) && gameState.retrieveSymbolOnSquare(1,i) == gameState.retrieveSymbolOnSquare(2,i)){
+                            applyEvents( [{
+                                gameId: cmd.gameId,
+                                type: "GameWon",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp:cmd.timeStamp
+                            }]);
+                        }
+                    }
+                    if ((gameState.retrieveSymbolOnSquare (0,0) == gameState.retrieveSymbolOnSquare(1,1) && gameState.retrieveSymbolOnSquare(1,1) == gameState.retrieveSymbolOnSquare(2,2)) || (gameState.retrieveSymbolOnSquare (0,2) == gameState.retrieveSymbolOnSquare(1,1) && gameState.retrieveSymbolOnSquare(1,1) == gameState.retrieveSymbolOnSquare(2,0))) {
+                        applyEvents( [{
+                                gameId: cmd.gameId,
+                                type: "GameWon",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp:cmd.timeStamp
+                        }]);
+                    }
+                    //Check here for game state that may result in additional events
                     eventHandler(events);
                 }
 
