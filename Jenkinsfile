@@ -5,11 +5,11 @@ node {
     stage('Build') {
         echo 'Building..'
         echo 'Installing packages'
-        sh 'npm install'
+        sh 'yarn install'
         echo 'Running postgres and migrate'
         sh 'npm run startpostgres && sleep 10 && npm run migratedb'
         echo 'Install client dependencies'
-        sh 'cd client && npm install && cd ..'
+        sh 'cd client && yarn install && cd ..'
         echo 'Start server'
         sh 'npm run startserver'
     }
